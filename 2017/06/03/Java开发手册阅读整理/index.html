@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="zhTMODK6kb" />
+  <meta http-equiv="content-language" content="zh-cn">
+  
+  <title>Java开发手册阅读整理 | Coder Am I</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天把阿里巴巴的《Java开发手册》阅读了一下，把觉得重要的地方，以及自己不懂的地方进行了摘抄和整理，方便大家交流以及自己以后的查用。就本人感觉而言，这套针对Java Web后台开发的手册对我的帮助比较大。主要体现在代码的规范，MySQL数据库使用规范，以及后台一些常见的问题解决办法，给了我指导性的意见。本人在开发过程中遇到的一些问题，在这本手册中都得到了比较好的解答，也知道了一些问题解决的最优解">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java开发手册阅读整理">
+<meta property="og:url" content="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/index.html">
+<meta property="og:site_name" content="Coder Am I">
+<meta property="og:description" content="今天把阿里巴巴的《Java开发手册》阅读了一下，把觉得重要的地方，以及自己不懂的地方进行了摘抄和整理，方便大家交流以及自己以后的查用。就本人感觉而言，这套针对Java Web后台开发的手册对我的帮助比较大。主要体现在代码的规范，MySQL数据库使用规范，以及后台一些常见的问题解决办法，给了我指导性的意见。本人在开发过程中遇到的一些问题，在这本手册中都得到了比较好的解答，也知道了一些问题解决的最优解">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://oqvbarc9z.bkt.clouddn.com/17060301.png">
+<meta property="og:image" content="http://oqvbarc9z.bkt.clouddn.com/17060302.png">
+<meta property="og:image" content="http://oqvbarc9z.bkt.clouddn.com/17060303.png">
+<meta property="og:image" content="http://oqvbarc9z.bkt.clouddn.com/17060304.png">
+<meta property="og:image" content="http://oqvbarc9z.bkt.clouddn.com/17060305.png">
+<meta property="og:updated_time" content="2017-12-07T13:54:03.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java开发手册阅读整理">
+<meta name="twitter:description" content="今天把阿里巴巴的《Java开发手册》阅读了一下，把觉得重要的地方，以及自己不懂的地方进行了摘抄和整理，方便大家交流以及自己以后的查用。就本人感觉而言，这套针对Java Web后台开发的手册对我的帮助比较大。主要体现在代码的规范，MySQL数据库使用规范，以及后台一些常见的问题解决办法，给了我指导性的意见。本人在开发过程中遇到的一些问题，在这本手册中都得到了比较好的解答，也知道了一些问题解决的最优解">
+<meta name="twitter:image" content="http://oqvbarc9z.bkt.clouddn.com/17060301.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <!--<link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">-->
+  <!--<link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>-->
+  <link href="/css/fonts/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Coder Am I</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about/index.html">About</a>
+        
+          <a class="main-nav-link" href="/board">Board</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://channel960608.github.io"></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/channel960608" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+    <a href="/board" class="mobile-nav-link">Board</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://channel960608.github.io"></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/07/Resume/">Resume</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/21/航天航空与臭虫/">航天航空与臭虫</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/18/JavaWeb会话与状态管理-Session机制学习/">JavaWeb会话与状态管理--Session机制学习</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/12/centos-mysql-tomcat环境下Web项目配置/">centos+mysql+tomcat环境下Web项目配置</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/03/Java开发手册阅读整理/">Java开发手册阅读整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Resume/">Resume</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Resume/" style="font-size: 10px;">Resume</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-Java开发手册阅读整理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/03/Java开发手册阅读整理/" class="article-date">
+  <time datetime="2017-06-02T16:03:13.000Z" itemprop="datePublished">2017-06-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java开发手册阅读整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#编程规范"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x7F16;&#x7A0B;&#x89C4;&#x8303;" class="headerlink" title="&#x7F16;&#x7A0B;&#x89C4;&#x8303;"></a>&#x7F16;&#x7A0B;&#x89C4;&#x8303;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）命名规范"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E00;&#xFF09;&#x547D;&#x540D;&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x4E00;&#xFF09;&#x547D;&#x540D;&#x89C4;&#x8303;"></a>&#xFF08;&#x4E00;&#xFF09;&#x547D;&#x540D;&#x89C4;&#x8303;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）常量定义"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E8C;&#xFF09;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;" class="headerlink" title="&#xFF08;&#x4E8C;&#xFF09;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;"></a>&#xFF08;&#x4E8C;&#xFF09;&#x5E38;&#x91CF;&#x5B9A;&#x4E49;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）格式规约"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E09;&#xFF09;&#x683C;&#x5F0F;&#x89C4;&#x7EA6;" class="headerlink" title="&#xFF08;&#x4E09;&#xFF09;&#x683C;&#x5F0F;&#x89C4;&#x7EA6;"></a>&#xFF08;&#x4E09;&#xFF09;&#x683C;&#x5F0F;&#x89C4;&#x7EA6;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#代码规范示例如下"><span class="toc-number">1.3.0.1.</span> <span class="toc-text"><a href="#&#x4EE3;&#x7801;&#x89C4;&#x8303;&#x793A;&#x4F8B;&#x5982;&#x4E0B;" class="headerlink" title="&#x4EE3;&#x7801;&#x89C4;&#x8303;&#x793A;&#x4F8B;&#x5982;&#x4E0B;"></a>&#x4EE3;&#x7801;&#x89C4;&#x8303;&#x793A;&#x4F8B;&#x5982;&#x4E0B;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（四）OOP规范"><span class="toc-number">1.4.</span> <span class="toc-text"><a href="#&#xFF08;&#x56DB;&#xFF09;OOP&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x56DB;&#xFF09;OOP&#x89C4;&#x8303;"></a>&#xFF08;&#x56DB;&#xFF09;OOP&#x89C4;&#x8303;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（五）集合处理"><span class="toc-number">1.5.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E94;&#xFF09;&#x96C6;&#x5408;&#x5904;&#x7406;" class="headerlink" title="&#xFF08;&#x4E94;&#xFF09;&#x96C6;&#x5408;&#x5904;&#x7406;"></a>&#xFF08;&#x4E94;&#xFF09;&#x96C6;&#x5408;&#x5904;&#x7406;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（六）并发处理"><span class="toc-number">1.6.</span> <span class="toc-text"><a href="#&#xFF08;&#x516D;&#xFF09;&#x5E76;&#x53D1;&#x5904;&#x7406;" class="headerlink" title="&#xFF08;&#x516D;&#xFF09;&#x5E76;&#x53D1;&#x5904;&#x7406;"></a>&#xFF08;&#x516D;&#xFF09;&#x5E76;&#x53D1;&#x5904;&#x7406;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（七）控制语句"><span class="toc-number">1.7.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E03;&#xFF09;&#x63A7;&#x5236;&#x8BED;&#x53E5;" class="headerlink" title="&#xFF08;&#x4E03;&#xFF09;&#x63A7;&#x5236;&#x8BED;&#x53E5;"></a>&#xFF08;&#x4E03;&#xFF09;&#x63A7;&#x5236;&#x8BED;&#x53E5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（八）注释规范"><span class="toc-number">1.8.</span> <span class="toc-text"><a href="#&#xFF08;&#x516B;&#xFF09;&#x6CE8;&#x91CA;&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x516B;&#xFF09;&#x6CE8;&#x91CA;&#x89C4;&#x8303;"></a>&#xFF08;&#x516B;&#xFF09;&#x6CE8;&#x91CA;&#x89C4;&#x8303;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（九）其他"><span class="toc-number">1.9.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E5D;&#xFF09;&#x5176;&#x4ED6;" class="headerlink" title="&#xFF08;&#x4E5D;&#xFF09;&#x5176;&#x4ED6;"></a>&#xFF08;&#x4E5D;&#xFF09;&#x5176;&#x4ED6;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常日志"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5F02;&#x5E38;&#x65E5;&#x5FD7;" class="headerlink" title="&#x5F02;&#x5E38;&#x65E5;&#x5FD7;"></a>&#x5F02;&#x5E38;&#x65E5;&#x5FD7;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）异常处理"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E00;&#xFF09;&#x5F02;&#x5E38;&#x5904;&#x7406;" class="headerlink" title="&#xFF08;&#x4E00;&#xFF09;&#x5F02;&#x5E38;&#x5904;&#x7406;"></a>&#xFF08;&#x4E00;&#xFF09;&#x5F02;&#x5E38;&#x5904;&#x7406;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）日志规范"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E8C;&#xFF09;&#x65E5;&#x5FD7;&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x4E8C;&#xFF09;&#x65E5;&#x5FD7;&#x89C4;&#x8303;"></a>&#xFF08;&#x4E8C;&#xFF09;&#x65E5;&#x5FD7;&#x89C4;&#x8303;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL规范"><span class="toc-number">3.</span> <span class="toc-text"><a href="#MySQL&#x89C4;&#x8303;" class="headerlink" title="MySQL&#x89C4;&#x8303;"></a>MySQL&#x89C4;&#x8303;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）建表规范"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E00;&#xFF09;&#x5EFA;&#x8868;&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x4E00;&#xFF09;&#x5EFA;&#x8868;&#x89C4;&#x8303;"></a>&#xFF08;&#x4E00;&#xFF09;&#x5EFA;&#x8868;&#x89C4;&#x8303;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）索引规范"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E8C;&#xFF09;&#x7D22;&#x5F15;&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x4E8C;&#xFF09;&#x7D22;&#x5F15;&#x89C4;&#x8303;"></a>&#xFF08;&#x4E8C;&#xFF09;&#x7D22;&#x5F15;&#x89C4;&#x8303;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）SQL规范"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E09;&#xFF09;SQL&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x4E09;&#xFF09;SQL&#x89C4;&#x8303;"></a>&#xFF08;&#x4E09;&#xFF09;SQL&#x89C4;&#x8303;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（四）ORM规范"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#xFF08;&#x56DB;&#xFF09;ORM&#x89C4;&#x8303;" class="headerlink" title="&#xFF08;&#x56DB;&#xFF09;ORM&#x89C4;&#x8303;"></a>&#xFF08;&#x56DB;&#xFF09;ORM&#x89C4;&#x8303;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工程规约"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x5DE5;&#x7A0B;&#x89C4;&#x7EA6;" class="headerlink" title="&#x5DE5;&#x7A0B;&#x89C4;&#x7EA6;"></a>&#x5DE5;&#x7A0B;&#x89C4;&#x7EA6;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）应用分层"><span class="toc-number">4.1.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E00;&#xFF09;&#x5E94;&#x7528;&#x5206;&#x5C42;" class="headerlink" title="&#xFF08;&#x4E00;&#xFF09;&#x5E94;&#x7528;&#x5206;&#x5C42;"></a>&#xFF08;&#x4E00;&#xFF09;&#x5E94;&#x7528;&#x5206;&#x5C42;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）二方库规约"><span class="toc-number">4.2.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E8C;&#xFF09;&#x4E8C;&#x65B9;&#x5E93;&#x89C4;&#x7EA6;" class="headerlink" title="&#xFF08;&#x4E8C;&#xFF09;&#x4E8C;&#x65B9;&#x5E93;&#x89C4;&#x7EA6;"></a>&#xFF08;&#x4E8C;&#xFF09;&#x4E8C;&#x65B9;&#x5E93;&#x89C4;&#x7EA6;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）服务器规约"><span class="toc-number">4.3.</span> <span class="toc-text"><a href="#&#xFF08;&#x4E09;&#xFF09;&#x670D;&#x52A1;&#x5668;&#x89C4;&#x7EA6;" class="headerlink" title="&#xFF08;&#x4E09;&#xFF09;&#x670D;&#x52A1;&#x5668;&#x89C4;&#x7EA6;"></a>&#xFF08;&#x4E09;&#xFF09;&#x670D;&#x52A1;&#x5668;&#x89C4;&#x7EA6;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全规约"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x5B89;&#x5168;&#x89C4;&#x7EA6;" class="headerlink" title="&#x5B89;&#x5168;&#x89C4;&#x7EA6;"></a>&#x5B89;&#x5168;&#x89C4;&#x7EA6;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#法律声明："><span class="toc-number">5.0.0.1.</span> <span class="toc-text"><a href="#&#x6CD5;&#x5F8B;&#x58F0;&#x660E;&#xFF1A;" class="headerlink" title="&#x6CD5;&#x5F8B;&#x58F0;&#x660E;&#xFF1A;"></a><strong>&#x6CD5;&#x5F8B;&#x58F0;&#x660E;</strong>&#xFF1A;</span></a></li></ol></li></ol></li></ol></li></ol>
+        </div>
+        
+
+        <p>今天把阿里巴巴的《Java开发手册》阅读了一下，把觉得重要的地方，以及自己不懂的地方进行了摘抄和整理，方便大家交流以及自己以后的查用。<br>就本人感觉而言，这套针对Java Web后台开发的手册对我的帮助比较大。主要体现在代码的规范，MySQL数据库使用规范，以及后台一些常见的问题解决办法，给了我指导性的意见。本人在开发过程中遇到的一些问题，在这本手册中都得到了比较好的解答，也知道了一些问题解决的最优解。所以拿出来和大家分享交流。<br>有的知识点不太理解，本着宁滥勿缺的原则，我通过类似摘抄的方法记录下来，希望读者见谅。<br><a href="http://oqvbarc9z.bkt.clouddn.com/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C%28%E6%AD%A3%E5%BC%8F%E7%89%88%29.pdf" target="_blank" rel="noopener">《阿里巴巴Java开发手册1.0.0》</a></p>
+<h2 id="编程规范"><a href="#编程规范" class="headerlink" title="编程规范"></a>编程规范</h2><h3 id="（一）命名规范"><a href="#（一）命名规范" class="headerlink" title="（一）命名规范"></a>（一）命名规范</h3><ol>
+<li>类名使用驼峰风格，例如UpperCamelCase，领域模型例外   </li>
+<li>方法名，参数名，成员变量，局部变量同意使用 lowerCamelCase 风格  </li>
+<li>常量命名全部大写，并用下划线隔开，力求语义表达完整，例如 MAX_STOCK_COUNT  </li>
+<li>抽象类命名使用Abstract或Base开头：异常类命名使用Exception结尾；测试类命名以它要测试的类的名称开始，以Test结尾  </li>
+<li>数组以下面的方式定义， String[] args;  </li>
+<li>POJO类中，也就是JavaBean类中，布尔类型变量都不要加is，否则部分分析框架会引起序列化错误  </li>
+<li>使用设计模式是需要在类的命名是体现出来，例如<br>public class OrderFactory;<br>public class LoginProxy;<br>public class ResourceObserver;</li>
+<li>接口类中的方法和属性不要加修饰符号，包括public，并加上有效的Javadoc注释</li>
+<li>枚举类名建议加上Enum后缀，枚举成员名称需要全大写，单词间用下划线隔开</li>
+<li>各层命名规范,偷懒上图了<br><img src="http://oqvbarc9z.bkt.clouddn.com/17060301.png" alt="">  </li>
+</ol>
+<h3 id="（二）常量定义"><a href="#（二）常量定义" class="headerlink" title="（二）常量定义"></a>（二）常量定义</h3><ol>
+<li>long或Long初始赋值时，必须用大写的Long，防止字母 l 与数字 1 混淆</li>
+<li>按常量功能进行分类，储存在不同的常量类中</li>
+<li>跨应用的常量应放置在二方库的constant目录下<br>引用共享常量放在一方库的modules中的constant目录下</li>
+</ol>
+<h3 id="（三）格式规约"><a href="#（三）格式规约" class="headerlink" title="（三）格式规约"></a>（三）格式规约</h3><ol>
+<li>大括号为空不需要换行。非空的大括号，左大括号前不换行，左大括号后换行，右大括号前换行，右大括号后有else等代码不换行。右大括号表示终止，后面必须换行</li>
+<li>左括号和后一个字符之间不出现空格；有括号和前一个字符之间不出现空格。</li>
+<li>if/for/while/switch/do等保留字与左右括号间必须有空格。</li>
+<li>任何运算符左右必须有空格</li>
+<li>缩进禁止使用tab，使用四个空格<br>如果你一定要用，IDEA设置tab为4个空格时，请勿勾选 Use tab character，而在 eclipse中，必须勾选 insert spaces for tabs。</li>
+<li>单行字符数不超过120个，换行时<ul>
+<li>第二行相对第一行缩进4个空格，从第三行开始，不再缩进</li>
+<li>运算符与下文一起换行</li>
+<li>方法调用的点符号与下文一起换行</li>
+<li>在多个参数超长，在逗号后换行</li>
+<li>在括号前不换行<br><img src="http://oqvbarc9z.bkt.clouddn.com/17060302.png" alt=""></li>
+</ul>
+</li>
+<li>方法的参数，多个参数都好后加空格</li>
+<li>IDE的text file encoding设置为 UTF-8 ， IDE 中文件换行符使用Unix格式，比使用WIndows格式</li>
+</ol>
+<h5 id="代码规范示例如下"><a href="#代码规范示例如下" class="headerlink" title="代码规范示例如下"></a>代码规范示例如下</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String args[]) &#123; </span><br><span class="line">    // 缩进4个空格 </span><br><span class="line">    String say = &quot;hello&quot;;</span><br><span class="line">     // 运算符的左右必须有一个空格 </span><br><span class="line">    int flag = 0; </span><br><span class="line">    //关键词if与括号之间必须有一个空格，括号内的 f 与左括号，0与右括号不需要空格</span><br><span class="line">     if (flag == 0) &#123;</span><br><span class="line">        System.out.println(say);</span><br><span class="line">     &#125;</span><br><span class="line">    // 左大括号前加空格且不换行；左大括号后换行 if (flag == 1) &#123;</span><br><span class="line">    System.out.println(&quot;world&quot;);</span><br><span class="line">    // 右大括号前换行，右大括号后有 else，不用换行</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">         System.out.println(&quot;ok&quot;);</span><br><span class="line">    // 在右大括号后直接结束，则必须换行</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="（四）OOP规范"><a href="#（四）OOP规范" class="headerlink" title="（四）OOP规范"></a>（四）OOP规范</h3><ol>
+<li>直接用类名来访问类的静态变量或静态方法</li>
+<li>Object的equals方法容易抛出指针异常，所以推荐使用常量或确定有值的对象来调用equals，例如 “test”.euquals(object);</li>
+<li>所有相同类型的包装类对象之间的值比较，全部使用equals方法<br>文档中解释也不是很清楚<br><img src="http://oqvbarc9z.bkt.clouddn.com/17060303.png" alt=""></li>
+<li>POJO类必须写toString方法，使用IDE中source &gt; generate toString时，如果继承了另一个POJO类注意在前面加 super.toString。</li>
+<li>循环体内，字符串的联结方式，使用StringBuilder的append方法进行拓展</li>
+<li>慎用 Object 的clone方法拷贝对象  </li>
+</ol>
+<h3 id="（五）集合处理"><a href="#（五）集合处理" class="headerlink" title="（五）集合处理"></a>（五）集合处理</h3><ol>
+<li>遍历Map类集合KV时，尽量使用entrySet而不是使用keySet<br> 使用keySet遍历Map时，第一次遍历把键值对转化为Iteration对象，当你得到key想获得value时又遍历了一次map，而使用entrySet，第一次遍历直接把键值对直接放到了entrySet中，效率更高。<br>  JDK8可以直接使用Map.foreach方法</li>
+<li>4中Map实现类的比较<br><img src="http://oqvbarc9z.bkt.clouddn.com/17060304.png" alt=""></li>
+<li>对集合去重时，尽量利用Set元素唯一的特性，可以提高效率</li>
+<li>list的subList方法需要注意的地方很多，谨慎使用</li>
+<li><p>集合转数组，推荐使用 toArray(T[] array)方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = new ArrayList&lt;String&gt;(2); </span><br><span class="line">String[] array = new String[list.size];</span><br><span class="line">array = list.toArray(array);</span><br></pre></td></tr></table></figure>
+<p>数组转集合，可以使用Arrays.asList()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] str = new String[] &#123; &quot;a&quot;, &quot;b&quot; &#125;; </span><br><span class="line">List list = Arrays.asList(str);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不要在foreach循环中进行add/remove操作，会造成错误，如果强行要使用可以利用Iteration遍历，并发操作还需要加锁</p>
+</li>
+<li>初始化ArrayList时要注意使用ArrayList(int initialCapacity)规定其大小</li>
+</ol>
+<h3 id="（六）并发处理"><a href="#（六）并发处理" class="headerlink" title="（六）并发处理"></a>（六）并发处理</h3><p>这一部分由于作者本人并发编程经验较为匮乏，无法辨别要点重要与否，本着学习的态度进行详细书写以便以后参考。</p>
+<ol>
+<li>获取单例对象需要保证线程安全，对象的方法也需要注意。资源驱动类，工具类，单例工厂类都需要注意。</li>
+<li><p>创建线程或线程池时请指定有意义的线程名称，方便出错时回溯。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimerTaskThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123; <span class="function"><span class="keyword">public</span> <span class="title">TimerTaskThread</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.setName(<span class="string">"TimerTaskThread"</span>); </span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>线程资源必须通过线程池提供，不允许在应用中自行显式创建线程。<br>使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资 源不足的问题。如果不     使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者“过度切换”的问题</p>
+</li>
+<li>线程池不允许使用 Executors去创建，而是通过ThreadPoolExecutor的方式，这样的处理方式让写的同学更加明确线程池的运行规则，规避资源耗尽的风险。</li>
+<li><p>SimpleDateFormat是线程不安全的类，一般不要定义为static变量，如果定义为static，必须加锁，或者使用DateUtils工具类。使用DateUtils是推荐下面的方法</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private static final ThreadLocal&lt;DateFormat&gt; df = new ThreadLocal&lt;DateFormat&gt;() &#123; </span><br><span class="line">    @Override protected DateFormat initialValue() &#123; </span><br><span class="line">        return new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p> 如果是JDK8的应用，可以使用Instant代替Date，LocalDateTime代替Calendar，DateTimeFormatter代替Simpledateformatter，官方给出的解释：simple beautiful strong immutable thread-safe。</p>
+</li>
+<li>高并发时，能用无锁数据结构，就不要用锁；能 锁区块，就不要锁整个方法体；能用对象锁，就不要用类锁。</li>
+<li>对多个资源、数据库表、对象同时加锁时，需要保持一致的加锁顺序，否则可能会造成死锁</li>
+<li>并发修改同一记录时，避免更新丢失，要么在应用层加锁，要么在缓存加锁，要么在数据库层使用乐观锁，使用version作为更新依据。如果每次访问冲突概率小于 20%，推荐使用乐观锁，否则使用悲观锁。乐观锁的重试次 数不得小于 3 次</li>
+<li>多线程并行处理定时任务时，Timer运行多个TimeTask时，只要其中之一没有捕获抛出的异常，其它任务便会自动终止运行，使用ScheduledExecutorService则没有这个问题。</li>
+</ol>
+<h3 id="（七）控制语句"><a href="#（七）控制语句" class="headerlink" title="（七）控制语句"></a>（七）控制语句</h3><ol>
+<li>switch必须包含default语句放到最后。</li>
+<li>即使只有一行代码，if/else/for/while/do也必须使用大括号</li>
+<li><p>尽量少使用if else的结构，改写成以下结构</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">If(condition) &#123;</span><br><span class="line">…</span><br><span class="line">Return obj;</span><br><span class="line"> &#125;</span><br><span class="line">…</span><br></pre></td></tr></table></figure>
+<p>如果一定要用的话，一定不能超过三层if else的结构</p>
+</li>
+<li>条件判断的参数要尽量简洁，可读性要尽可能高，推荐赋值给布尔值</li>
+<li>尽量提升循环体内的语句性能，定义变量，对象，获取数据库连接尽量在循环体外，try-catch也尽量在循环体外</li>
+</ol>
+<h3 id="（八）注释规范"><a href="#（八）注释规范" class="headerlink" title="（八）注释规范"></a>（八）注释规范</h3><ol>
+<li>类、类属性、类方法的注释必须使用Javadoc规范，使用/**内容**/格式,不得使用 //xxx方式。</li>
+<li>抽象方法必须注释，除了返回值，参数，异常之外，还需要指出方法做了什么</li>
+<li>类需要添加创造者信息</li>
+<li>所有枚举类需要注释</li>
+<li>与其用半吊子英文，不如用中文注释讲清楚</li>
+<li>注释掉的代码尽量要配合注释进行说明</li>
+</ol>
+<h3 id="（九）其他"><a href="#（九）其他" class="headerlink" title="（九）其他"></a>（九）其他</h3><ol>
+<li>后台传输给页面的变量必须加$!{var}，这样如果传过去的数据var=null或不存在，$!{var}可以直接显示在页面上</li>
+<li>Math.random()返回的是double类，取值范围 [0,1), 若要取整数类型的随机数，不要把x放大10若干倍后取整，应该使用Random对象的nextInt或nextLong方法</li>
+<li>获取当前毫秒数，使用 System.currentTImeMills(), 而不是 new Date().getTime()<br>利用 System,nanoTime() 可获得更精确的纳米级时间值。<br>JDK8中，针对统计时间场景，推荐使用 Instant 类  </li>
+<li>任何数据结构构造或初始化，应当指定大小，避免数据结构无限增长吃光内存  </li>
+</ol>
+<h2 id="异常日志"><a href="#异常日志" class="headerlink" title="异常日志"></a>异常日志</h2><h3 id="（一）异常处理"><a href="#（一）异常处理" class="headerlink" title="（一）异常处理"></a>（一）异常处理</h3><ol>
+<li>不要捕获继承RuntimeException的运行时异常类，如IndexOutOfBoundsException / NullPointerException，这些异常必须与检查来规避。</li>
+<li>finally必须对资源对象，流对象进行关闭，有异常也需要try-catch</li>
+<li>防止NPE是程序员的基本修养，注意一下场景：<ul>
+<li>返回类型为包装数据类型，有可能是null，返回int值时注意判空</li>
+<li>数据库查询结果可能是null</li>
+<li>集合里的元素及时isNotEmpty，取出元素也可能为null</li>
+<li>远程调用返回对象，一律要求进行NPE判断</li>
+<li>对Session中获取数据，建议NPE检查。避免空指针</li>
+<li>级联调用obj.getA().getB().getC()，一连串调用，易产生NPE</li>
+</ul>
+</li>
+<li>使用有业务含义的自定义异常，避免跑出Exception或者Throwable，推荐业界自定义异常，DaoException，ServiceException</li>
+<li>避免代码重复</li>
+</ol>
+<h3 id="（二）日志规范"><a href="#（二）日志规范" class="headerlink" title="（二）日志规范"></a>（二）日志规范</h3><ol>
+<li>应用日志框架SLF4J中的API进行日志管理，而不是使用日志系统(Log4j,Logback)</li>
+<li>日志文件推荐保存至少15天</li>
+<li>拓展日志命名方式： <ul>
+<li>appName_logType_logName.log。</li>
+<li>logType:日志类型，推荐分类有stats/desc/monitor/visit等</li>
+<li>logName:日志描述。</li>
+</ul>
+</li>
+<li>异常信息应该包括两类信息：案发现场信息和异常堆栈信息，案发现场信息这个好好笑</li>
+</ol>
+<h2 id="MySQL规范"><a href="#MySQL规范" class="headerlink" title="MySQL规范"></a>MySQL规范</h2><h3 id="（一）建表规范"><a href="#（一）建表规范" class="headerlink" title="（一）建表规范"></a>（一）建表规范</h3><ol>
+<li>表达是否概念的字段以 is_xxx的方式命名，数据类型是unsigned tinyint,1表示是，0表示否。任何字段为非负数时，类型必须是unsigned</li>
+<li>表名，字段名必须使用小写字母和数字，禁止使用数字开头，禁止两个下划线中间只有数字。数据库字段名修改代价太大，必须慎之又慎！</li>
+<li>表名不使用复数名词</li>
+<li>唯一索引名为uk<em>字段名，普通索引为idx</em>字段名</li>
+<li>小数类型为decimal，禁止使用float和double</li>
+<li>储存定长度字符串，需要使用char定长字符串类型</li>
+<li>varchar可变长字符串，不预先分配存储空间，长度不超过5000，超过5000，则定义为text，独立出一张表，用主键对应，避免影响其他字段索引效率</li>
+<li>表必备字段 id，gmt_create,gmt_modified,其中id必为主键，类型为unsigned bigint、单表自增、步长为1。gmt_create,gmt_modified的类型均为date_time类型。这两个字段从字面理解的话应该是一条记录创建的时间和最后一次修改的时间。</li>
+<li>表命名是最好加上“业务名称_表的作用”</li>
+<li>单表行数超过500万或者单表容量超过2GB，才推荐分库分表  </li>
+</ol>
+<h3 id="（二）索引规范"><a href="#（二）索引规范" class="headerlink" title="（二）索引规范"></a>（二）索引规范</h3><ol>
+<li>业务上具有唯一特征的字段，即使是组合字段，也必须建成唯一索引。</li>
+<li>超过三个表禁止join</li>
+<li>在varchar字段上建立索引，必须指定索引长度，没必要对全字段建立索引，根据实际文本区分度决定索引长度。</li>
+<li>sql性能优化的目标：至少达到range级别，要求是ref级别，如果可以是consts最好<ul>
+<li>consts： 单表中自多只有一个匹配行（主键或者唯一索引），在优化阶段即可读取到数据</li>
+<li>ref： 使用普通的索引（normal index）</li>
+<li>range： 对索引进行范围检索</li>
+</ul>
+</li>
+<li>如果有order by的场景，注意利用索引的有序性。Order by最后的字段是组合索引的一部分，并且放在索引组合顺序的最后，避免出现file_sort的情况，影响查询性能。<br> 例如：索引中有范围查找，那么索引有序性无法利用，如：<code>Where a&gt;10 order by b;</code> 索引a_b无法排序。而 where a=? and b = ? order by c; 索引： a_b_c 就不会影响查询性能</li>
+<li>建立组合索引的时候，区分度越高，放在越左边</li>
+</ol>
+<h3 id="（三）SQL规范"><a href="#（三）SQL规范" class="headerlink" title="（三）SQL规范"></a>（三）SQL规范</h3><ol>
+<li>不要使用 COUNT(column) 代替 COUNT(*)，前者不会统计 column 为 null 的一列，而后者不会统计一列全为 null 的值</li>
+<li>COUNT(distinct col) 计算该列除 NULL 之外的不重复数量， 注意使用 COUNT(distinct col1,col2) 时，只有有一列为 NULL，就不会统计改行</li>
+<li>当某一行全为NULL，count(col)返回0，但sum(col)返回 NULL，因此sun()需要注意NPE的问题。</li>
+<li>NULL与任何值比较返回都是NULL。使用ISNULL()可以判断是否为NULL。</li>
+<li>写分页查询时，如果count为0则直接返回，避免执行后面的分页语句。</li>
+<li>不得使用外键与级联，一切外键概念必须在应用层解决。<br>外键和级联更新适用于单机低并发，不适合分布式、高并发集群；级联更新是强阻塞，存在数据库跟新风暴的风险；外键影响数据库的插入速度。</li>
+<li>禁止使用存储过程，存储过程难以调试和拓展，没有移植性</li>
+<li>数据订正，删除，和修改记录，要先select，避免出现误删除，确认无误才能更新</li>
+<li>in操作能避免就避免，如果避免不了，要控制in后面的集合在1000个以内</li>
+<li>如果有全球化需要，所有字符存储和表示，均以utf-8编码，如果使用表情，用utfmb4来存储</li>
+<li>TRUNCATE TABLE 比 DELETE速度快，且使用的系统和事务日志资源少，但TRUNCATE无事务且不触发trigger，有可能造成事故，故不建议在开发代码中使用它。</li>
+</ol>
+<h3 id="（四）ORM规范"><a href="#（四）ORM规范" class="headerlink" title="（四）ORM规范"></a>（四）ORM规范</h3><ol>
+<li>表查询中不准使用*作为查询字段，必须写明哪些字段</li>
+<li>POJO类的boolean属性不能加is，而数据库字段必须加is_,要求在resultMap中进行字段与属性之间的影射。</li>
+<li>不要用resultClass当返回参数，即使所有类属性名为数据库字段一一对应，也需要定义：反过来，每一个表也必须有一个与之对应。</li>
+<li>xml配置中参数注意使用： #{}，#param# 不要使用 &amp;{} 这种方法容易出现SQL注入</li>
+<li>iBATIS自带的queryForList(Stirng statementName, int start, int size)不推荐</li>
+<li>不允许将HashMap与Hashtable作为查询结果集输出</li>
+<li>更新数据表记录时，必须同时更新记录对应的gmt_modified字段值为当前时间</li>
+<li>写数据更新接口，传入为POJO类，不要写大而全的接口，换句话说，如果你要更新一个字段，就为这个字段特定写一个接口，不要加上一些不需要修改的字段，否则会出现一下问题：1.易出错 2.效率低 3.binlog增加储存</li>
+<li>@Transactional 事务不要滥用</li>
+<li><isequal> 中的compareValue是与属性值对比的常量，一般是数字，表示相等时带上此条件；<isnotempty> 表示不为空且不为null时执行；<isnotnull>表示不为null值时执行。</isnotnull></isnotempty></isequal></li>
+</ol>
+<h2 id="工程规约"><a href="#工程规约" class="headerlink" title="工程规约"></a>工程规约</h2><h3 id="（一）应用分层"><a href="#（一）应用分层" class="headerlink" title="（一）应用分层"></a>（一）应用分层</h3><ol>
+<li><p><img src="http://oqvbarc9z.bkt.clouddn.com/17060305.png" alt="">     </p>
+<ul>
+<li>开放接口层：可直接封装Servuce接口暴露成RPC接口；听过web封装成http接口；网口控制层等</li>
+<li>终端显示层： 各个端的模板渲染并执行显示层。当前主要是velocity渲染，js渲染，jsp渲染，移动端展示层等。</li>
+<li>Web层：主要是对访问控制进行转发，各类基本参数校验，或者不服用的业务简单等</li>
+<li>Service层： 相对具体的业务逻辑服务层</li>
+<li>Manager层：通用业务处理层，它有如下特征</li>
+<li>对第三方平台封装的层，预处理返回结果级转化异常结果</li>
+<li>对Service层通用能力的下沉，如缓存方案、中间件通用处理</li>
+<li>与DAO层交互、对DAO的业务通用能录的封装</li>
+<li>DAO层：数据访问层，与底层MySQL，Oracle，Hbase进行数据交互</li>
+<li>外部接口或第三方平台：包括其他部门RPC开放接口，基础平台，其他公司的HTTP接口。   </li>
+</ul>
+</li>
+<li><p>DAO层出现异常使用try-catch语句控制，并throw newDAOException；在Service层出现异常，必须记录日志信息到磁盘，尽可能带上参数信息，相当于保护案发现场。Web层已经处于顶层，不可以继续向上抛出异常，应该跳转到有好的错误页面。  </p>
+</li>
+</ol>
+<h3 id="（二）二方库规约"><a href="#（二）二方库规约" class="headerlink" title="（二）二方库规约"></a>（二）二方库规约</h3><p>二方库使用比较少，也就不准备对这方面进行研究了</p>
+<h3 id="（三）服务器规约"><a href="#（三）服务器规约" class="headerlink" title="（三）服务器规约"></a>（三）服务器规约</h3><ol>
+<li>并发服务器建议调小TCP协议的time_wait超时时间<br>操作系统默认240秒之后才会关闭time_wait状态的连接，在高并发访问下，服务器会因为连接数太多而无法建立新的连接，所以需要在服务器上调小此等待值</li>
+<li>调大服务器支持的最大文件句柄数</li>
+<li>给JVM设置-XX:+HeapDumpOnOutOfMemoryError参数，让 JVM 碰到OOM场景时输出 dump信息</li>
+<li>服务器内部重定向使用forward，外部重定向使用URL拼装工具类生成</li>
+</ol>
+<h2 id="安全规约"><a href="#安全规约" class="headerlink" title="安全规约"></a>安全规约</h2><ol>
+<li>隶属于用户个人的页面或者功能必须进行权限控制校验</li>
+<li>用户名敏感数据禁止直接展示，必须对展示数据脱敏</li>
+<li>防止SQL注入，用户输入sql参数严格使用参数绑定或者METADATA字段限定，禁止字符串拼接SQL访问数据库</li>
+<li>用户请求传入的任何参数必须做有效性验证，防止<ul>
+<li>Page size 过大导致内存溢出</li>
+<li>恶意 order by 导致数据库慢查询</li>
+<li>任意重定向</li>
+<li>SQL注入</li>
+<li>反序列化注入</li>
+<li>正则输入源串拒绝服务 ReDoS<br>使用正则表达式验证客户端输入时，有些正则写法验证普通用户输入没问题，但一些特殊构造的字符串输入可能导致死循环的效果</li>
+</ul>
+</li>
+<li>禁止向HTML页面输出未经安全过滤或未正确转义的用户数据</li>
+<li>表单，AJAX提交必须执行CSRF安全过滤</li>
+<li>在使用平台资源，譬如短信、邮件、电话、下单、支付，必须实现正确的防重放限制，如数量限制、疲劳度控制、验证码校验，避免被滥刷、资损。</li>
+<li>发贴、评论、发送即时消息等用户生成内容的场景必须实现防刷、文本内容违禁词过滤等风控策略。</li>
+</ol>
+<h5 id="法律声明："><a href="#法律声明：" class="headerlink" title="法律声明："></a><strong>法律声明</strong>：</h5><p>该手册为阿里巴巴集团技术部的技术分享，版权归阿里巴巴集团所有，仅供大家交流、学习及研究使用，禁止使用商业用途，违者必究</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/" data-id="cjawk6e7i000601zn810j4wnl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          centos+mysql+tomcat环境下Web项目配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/01/CORBA简介与简单实践/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CORBA简介与简单实践</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="Java开发手册阅读整理" style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cyt29gnpS',
+    conf = 'ab6fb0a4df25f655315dc29bcd3837b3';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
+  </section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="/" class="logo">Coder Am I</a>
+      &copy; 2017 Channel<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

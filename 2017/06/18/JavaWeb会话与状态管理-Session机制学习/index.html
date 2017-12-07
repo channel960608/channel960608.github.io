@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="zhTMODK6kb" />
+  <meta http-equiv="content-language" content="zh-cn">
+  
+  <title>JavaWeb会话与状态管理--Session机制学习 | Coder Am I</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要上一次面试Java后台的时候被问网页登录后如何保持会话，我回答是每次请求都验证一次登录信息，而在如何验证这个问题上陷入尴尬。现在意识到自己在做web项目的时候，完全没有Session这个概念，所以现在把Java Web的Session机制进行整理。   前端  后台实际的Spring MVC的框架中，直接使用Spring security会比较好一点。   Session机制 session机">
+<meta name="keywords" content="Java Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb会话与状态管理--Session机制学习">
+<meta property="og:url" content="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/index.html">
+<meta property="og:site_name" content="Coder Am I">
+<meta property="og:description" content="摘要上一次面试Java后台的时候被问网页登录后如何保持会话，我回答是每次请求都验证一次登录信息，而在如何验证这个问题上陷入尴尬。现在意识到自己在做web项目的时候，完全没有Session这个概念，所以现在把Java Web的Session机制进行整理。   前端  后台实际的Spring MVC的框架中，直接使用Spring security会比较好一点。   Session机制 session机">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12489453/27218197-b6502304-52af-11e7-8700-089c12d09d8d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/12489453/27218244-fb6cd25c-52af-11e7-808e-b4ae6068c4dd.png">
+<meta property="og:updated_time" content="2017-12-07T13:54:03.994Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb会话与状态管理--Session机制学习">
+<meta name="twitter:description" content="摘要上一次面试Java后台的时候被问网页登录后如何保持会话，我回答是每次请求都验证一次登录信息，而在如何验证这个问题上陷入尴尬。现在意识到自己在做web项目的时候，完全没有Session这个概念，所以现在把Java Web的Session机制进行整理。   前端  后台实际的Spring MVC的框架中，直接使用Spring security会比较好一点。   Session机制 session机">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/12489453/27218197-b6502304-52af-11e7-8700-089c12d09d8d.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <!--<link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">-->
+  <!--<link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>-->
+  <link href="/css/fonts/font.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Coder Am I</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about/index.html">About</a>
+        
+          <a class="main-nav-link" href="/board">Board</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://channel960608.github.io"></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+          <a id="nav-github-link" class="nav-icon" href="https://github.com/channel960608" title="Fork me on GitHub"></a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/about/index.html" class="mobile-nav-link">About</a>
+  
+    <a href="/board" class="mobile-nav-link">Board</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://channel960608.github.io"></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/07/Resume/">Resume</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/21/航天航空与臭虫/">航天航空与臭虫</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/18/JavaWeb会话与状态管理-Session机制学习/">JavaWeb会话与状态管理--Session机制学习</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/12/centos-mysql-tomcat环境下Web项目配置/">centos+mysql+tomcat环境下Web项目配置</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/03/Java开发手册阅读整理/">Java开发手册阅读整理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Resume/">Resume</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Resume/" style="font-size: 10px;">Resume</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-JavaWeb会话与状态管理-Session机制学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" class="article-date">
+  <time datetime="2017-06-17T17:10:48.000Z" itemprop="datePublished">2017-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaWeb会话与状态管理--Session机制学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x6458;&#x8981;" class="headerlink" title="&#x6458;&#x8981;"></a>&#x6458;&#x8981;</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session机制"><span class="toc-number"></span> <span class="toc-text"><a href="#Session&#x673A;&#x5236;" class="headerlink" title="Session&#x673A;&#x5236;"></a>Session&#x673A;&#x5236;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session-cookies"><span class="toc-number"></span> <span class="toc-text"><a href="#Session-cookies" class="headerlink" title="Session cookies"></a>Session cookies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session的生命周期"><span class="toc-number"></span> <span class="toc-text"><a href="#Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;" class="headerlink" title="Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;"></a>Session&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#服务端新建HttpSession对象"><span class="toc-number"></span> <span class="toc-text"><a href="#&#x670D;&#x52A1;&#x7AEF;&#x65B0;&#x5EFA;HttpSession&#x5BF9;&#x8C61;" class="headerlink" title="&#x670D;&#x52A1;&#x7AEF;&#x65B0;&#x5EFA;HttpSession&#x5BF9;&#x8C61;"></a>&#x670D;&#x52A1;&#x7AEF;&#x65B0;&#x5EFA;HttpSession&#x5BF9;&#x8C61;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session的创建"><span class="toc-number"></span> <span class="toc-text"><a href="#Session&#x7684;&#x521B;&#x5EFA;" class="headerlink" title="Session&#x7684;&#x521B;&#x5EFA;"></a>Session&#x7684;&#x521B;&#x5EFA;</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Session-销毁"><span class="toc-number"></span> <span class="toc-text"><a href="#Session-&#x9500;&#x6BC1;" class="headerlink" title="Session &#x9500;&#x6BC1;"></a>Session &#x9500;&#x6BC1;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session的常用方法"><span class="toc-number"></span> <span class="toc-text"><a href="#Session&#x7684;&#x5E38;&#x7528;&#x65B9;&#x6CD5;" class="headerlink" title="Session&#x7684;&#x5E38;&#x7528;&#x65B9;&#x6CD5;"></a>Session&#x7684;&#x5E38;&#x7528;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session类在Java后台中的使用"><span class="toc-number"></span> <span class="toc-text"><a href="#Session&#x7C7B;&#x5728;Java&#x540E;&#x53F0;&#x4E2D;&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="Session&#x7C7B;&#x5728;Java&#x540E;&#x53F0;&#x4E2D;&#x7684;&#x4F7F;&#x7528;"></a>Session&#x7C7B;&#x5728;Java&#x540E;&#x53F0;&#x4E2D;&#x7684;&#x4F7F;&#x7528;</span></a>
+        </div>
+        
+
+        <h6 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h6><p>上一次面试Java后台的时候被问网页登录后如何保持会话，我回答是每次请求都验证一次登录信息，而在如何验证这个问题上陷入尴尬。现在意识到自己在做web项目的时候，完全没有Session这个概念，所以现在把Java Web的Session机制进行整理。   <a href="http://blog.csdn.net/yuchao2015/article/details/55806504" target="_blank" rel="noopener">前端</a>  <a href="http://blog.csdn.net/qq_26624661/article/details/52094721" target="_blank" rel="noopener">后台</a><br>实际的Spring MVC的框架中，直接使用Spring security会比较好一点。  </p>
+<h2 id="Session机制"><a href="#Session机制" class="headerlink" title="Session机制"></a>Session机制</h2><ul>
+<li>session机制采用的是在服务器端保存HTTP状态信息的方案  </li>
+<li>当程序需要为某个客户端请求创建一个session时，服务器首先检查<em>客户端请求</em>里是否包含session标识 (sessionId)，如果已经包含一个sessionId，则说明此客户已经创建了一个session，服务器就按照sessionId 把这个session检索出来，如果不包含这个sessionId，就会新建一个（这种情况一般是由于服务端已经删除了这个session对象，而用户发送请求的时候加上了J SESSION这个参数）。如果客户端的请求不包含sessionId，则会为客户新建一个session并生成一个与之相关的sessionId。  </li>
+</ul>
+<p>使用Chrome的开发者模式可以查看发送的sessionId<br><img src="https://user-images.githubusercontent.com/12489453/27218197-b6502304-52af-11e7-8700-089c12d09d8d.png" alt="image"><br>其中的请求头Request Headers中的cookie属性，包含了JSESSION的值<br><img src="https://user-images.githubusercontent.com/12489453/27218244-fb6cd25c-52af-11e7-808e-b4ae6068c4dd.png" alt="image"><br>客户端和服务器端就是通过这个JSESSION的值判断当前用户  </p>
+<h2 id="Session-cookies"><a href="#Session-cookies" class="headerlink" title="Session cookies"></a>Session cookies</h2><ul>
+<li>session通过sessionId区分不同的用户，session是以cookie或url为基础的。<strong><em>默认使用cookie实现，系统会创建一个名为JSESSIONID的输出cookie，这称之为session cookie，以区别persistent cookie（我们通常说的cookie），session cookie存储在浏览器内存中</em></strong>。当浏览器设置为禁用cookie时，web服务器会采用URL重写的方式传递sessionId，可以在地址栏看到。</li>
+<li>session cookie针对一次会话而言，会话结束，session cookie随之销毁。而persistent cookie只是存在客户端硬盘上的一段文本。</li>
+<li>浏览器关闭，浏览区内存中的session cookie消失，服务器中的session对象不会受影响。保存在硬盘上的persistent cookie也不会受影响。</li>
+</ul>
+<h2 id="Session的生命周期"><a href="#Session的生命周期" class="headerlink" title="Session的生命周期"></a>Session的生命周期</h2><h4 id="服务端新建HttpSession对象"><a href="#服务端新建HttpSession对象" class="headerlink" title="服务端新建HttpSession对象"></a>服务端新建HttpSession对象</h4><ul>
+<li>浏览器访问服务端任何一个JSP或Servlet，服务器端一般会创建HttpSession对象    </li>
+<li>当前 JSP 或 Servlet 是客户端访问WEB的第一个资源时，且JSP中设置 <code>session=false</code> ，即JSP页面禁用隐含变量，则不会为JSP创建HttpSession对象，此时可以显示地创建 HttpSession 对象  </li>
+<li>当前 JSP 或 Servlet 不是客户端访问WEB的第一个资源时，且其他页面已经创建了HttpSession对象时，不会创建HttpSession对象</li>
+</ul>
+<h4 id="Session的创建"><a href="#Session的创建" class="headerlink" title="Session的创建"></a>Session的创建</h4><ol>
+<li>默认情况下，第一次访问web应用的JSP页面时，页面必须有一个和这个相关的Session对象。前提是JSP中的session属性为 true</li>
+<li>JSP 中 session 属性为 false 的情况下，以及在 Servlet 下，可以通过 <code>request.getSession(flag);</code> 获取session对象。  <ul>
+<li>若 flag 为 true ，则返回一个HttpSession对象，如果已经有和当前JSP页面关联的HttpSession，直接返回；如果没有，则创建一个返回。</li>
+<li>若flag 为 false，若有关联的对象则返回，如果没有，则返回null</li>
+</ul>
+</li>
+</ol>
+<h4 id="Session-销毁"><a href="#Session-销毁" class="headerlink" title="Session 销毁"></a>Session 销毁</h4><ol>
+<li>调用  HttpSession 的 <code>invalidate()</code> 方法  </li>
+<li><p>HttpSession 超过过期时间自动销毁<br> session对象的几个方法</p>
+<ul>
+<li>返回最大时效： getMaxInactiveInterval() 单位是秒</li>
+<li>设置最大时效： setMaxInactiveInterval(int interval)</li>
+<li>Tomcat中 conf/web.xml 配置session的生命周期<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;session-config&gt;</span><br><span class="line">        &lt;session-timeout&gt;30&lt;/session-timeout&gt;</span><br><span class="line">&lt;/session-config&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>卸载WEB应用<br> 关闭浏览器并不能销毁session对象</p>
+</li>
+</ol>
+<h2 id="Session的常用方法"><a href="#Session的常用方法" class="headerlink" title="Session的常用方法"></a>Session的常用方法</h2><p>主要是在 Java 里操作session的几个方法  </p>
+<ul>
+<li><strong>public void setAttribute</strong>（Sting name, Object value）以键值对的形式添加到Session对象中的属性，如果name已经存在则更新它。可以理解为Session中属性名字和值以键值对的形式存储在Session对象下的Map数据结构下。  </li>
+<li><strong>public Object getAttribute(String name)</strong> 以属性的名字取属性值，不存在是返回 null</li>
+<li><strong>public void removeAttribute(String name)</strong> 删除属性，如果属性不存在会出现异常  </li>
+<li><strong>public void invalidate（）</strong> 使Session对象立即失效，原来对象中储存的Session对象将无法访问</li>
+<li><strong>public String getId( )</strong> 获取当前会话的id，一般储存在cookie中</li>
+<li><strong>public void setMaxInactiveInterval(int interval)</strong> 设置会话的最大持续时间，单位为秒，为负数的话Session不会失效  </li>
+<li><strong>public long getCreationTime()</strong> 获取创建会话时间，单位是毫秒</li>
+<li><strong>public long getLastAccessedTime()</strong> 获取会话最后访问时间，单位是毫秒<br>上面两个时间返回的类型是long的毫秒数，因此可以通过 <code>Date creationTime = new Date(session.getCreationTime());</code> 来获得Date类型的对象</li>
+</ul>
+<p>下面放了jsp 前端的例子，后面的记录中会把后台的处理代码放出来<br>login.jsp<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span>  </span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;  </span><br><span class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;  </span><br><span class="line">&lt;html&gt;  </span><br><span class="line">&lt;head&gt;  </span><br><span class="line">&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;  </span><br><span class="line">&lt;title&gt;Insert title here&lt;<span class="regexp">/title&gt;  </span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;  </span><br><span class="line">&lt;body&gt;  </span><br><span class="line">  </span><br><span class="line">    SessionID: &lt;%= session.getId() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    IsNew: &lt;%= session.isNew() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    MaxInactiveInterval: &lt;%= session.getMaxInactiveInterval() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    CreateTime: &lt;%= session.getCreationTime() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">  </span><br><span class="line">    LastAccessTime: &lt;%= session.getLastAccessedTime() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    &lt;%   </span><br><span class="line">        Object username = session.getAttribute("username");  </span><br><span class="line">        if(username == null)&#123;  </span><br><span class="line">            username = "";  </span><br><span class="line">        &#125;  </span><br><span class="line">    %&gt;  </span><br><span class="line">      </span><br><span class="line">    &lt;form action="hello.jsp" method="post"&gt;  </span><br><span class="line">        username: &lt;input type="text" name="username"   </span><br><span class="line">            value="&lt;%= username %&gt;"/&gt;  </span><br><span class="line">        &lt;input type="submit" value="Submit"/&gt;  </span><br><span class="line">    &lt;/form&gt;  </span><br><span class="line">      </span><br><span class="line">&lt;/body&gt;  </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p>hello.jsp  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;  </span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;  </span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;  </span><br><span class="line">&lt;html&gt;  </span><br><span class="line">&lt;head&gt;  </span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;  </span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;  </span><br><span class="line">&lt;/head&gt;  </span><br><span class="line">&lt;body&gt;  </span><br><span class="line">  </span><br><span class="line">    SessionID: &lt;%= session.getId() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    IsNew: &lt;%= session.isNew() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    MaxInactiveInterval: &lt;%= session.getMaxInactiveInterval() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    CreateTime: &lt;%= session.getCreationTime() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">  </span><br><span class="line">    LastAccessTime: &lt;%= session.getLastAccessedTime() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    Hello: &lt;%= request.getParameter(&quot;username&quot;) %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    &lt;%   </span><br><span class="line">        session.setAttribute(&quot;username&quot;, request.getParameter(&quot;username&quot;));   </span><br><span class="line">    %&gt;  </span><br><span class="line">      </span><br><span class="line">    &lt;a href=&quot;login.jsp&quot;&gt;重新登录&lt;/a&gt;      </span><br><span class="line">          </span><br><span class="line">    &lt;a href=&quot;logout.jsp&quot;&gt;注销&lt;/a&gt;   </span><br><span class="line">      </span><br><span class="line">&lt;/body&gt;  </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>logout.jsp  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;  </span><br><span class="line">    pageEncoding=&quot;UTF-8&quot;%&gt;  </span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;  </span><br><span class="line">&lt;html&gt;  </span><br><span class="line">&lt;head&gt;  </span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;  </span><br><span class="line">&lt;title&gt;Insert title here&lt;/title&gt;  </span><br><span class="line">&lt;/head&gt;  </span><br><span class="line">&lt;body&gt;  </span><br><span class="line">      </span><br><span class="line">    SessionID: &lt;%= session.getId() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    IsNew: &lt;%= session.isNew() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    MaxInactiveInterval: &lt;%= session.getMaxInactiveInterval() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    CreateTime: &lt;%= session.getCreationTime() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">  </span><br><span class="line">    LastAccessTime: &lt;%= session.getLastAccessedTime() %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    Bye: &lt;%= session.getAttribute(&quot;username&quot;) %&gt;  </span><br><span class="line">    &lt;br&gt;&lt;br&gt;  </span><br><span class="line">      </span><br><span class="line">    &lt;a href=&quot;login.jsp&quot;&gt;重新登录&lt;/a&gt;      </span><br><span class="line">      </span><br><span class="line">    &lt;%   </span><br><span class="line">        //使session失效  </span><br><span class="line">        session.invalidate();  </span><br><span class="line">    %&gt;  </span><br><span class="line">      </span><br><span class="line">&lt;/body&gt;  </span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Session类在Java后台中的使用"><a href="#Session类在Java后台中的使用" class="headerlink" title="Session类在Java后台中的使用"></a>Session类在Java后台中的使用</h2><p>首先后台实现登录功能，要创建用户的实体类 User.java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">ublic class User &#123;  </span><br><span class="line">    private String uname;  </span><br><span class="line">    private String pwd;  </span><br><span class="line">      </span><br><span class="line">    public String getUname() &#123;  </span><br><span class="line">        return uname;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setUname(String uname) &#123;  </span><br><span class="line">        this.uname = uname;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public String getPwd() &#123;  </span><br><span class="line">        return pwd;  </span><br><span class="line">    &#125;  </span><br><span class="line">    public void setPwd(String pwd) &#123;  </span><br><span class="line">        this.pwd = pwd;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    public String toString() &#123;  </span><br><span class="line">        return &quot;User [uname=&quot; + uname + &quot;, pwd=&quot; + pwd + &quot;]&quot;;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">```  </span><br><span class="line">用户类中只定义了用户名 uname 以及密码 pwd 这两个字符串类型，并添加了getter和setter方法。  </span><br><span class="line"></span><br><span class="line">控制器 Controller 方法  </span><br><span class="line">LoginController.java</span><br></pre></td></tr></table></figure>
+<p>public class LoginController {  </p>
+<pre><code>@RequestMapping(&quot;/login&quot;)  
+public String login(User user,ModelMap map) {  
+    //user会自己注入session中  
+    //将uname放入session作用域中，这样转发页面也可以取到这个数据。  
+    map.addAttribute(&quot;uname&quot;, user.getUname());  
+    return &quot;loginSuccess&quot;;  
+}  
+</code></pre><p>}<br>```  </p>
+<p>其中的 ModelMap 对象，主要用于传递控制方法处理数据到结果页面。简单地说，就是通过ModelMap这个数据结构，手动将你想要传递的后台数据传输到前端。<br>ModelMap的用法，从上面提到的 addAttribute() 方法可以猜到，又是一个Map的结构。<br>user是自己注入到Session中，其实user对象自带了uname的属性，不过我们可以通过ModelMap手动添加属性。<br>前端 jsp 可以通过调用 <code>sessionScope.user.uname</code> 或者 <code>sessionScope.uname</code>，获取uname这个属性的值，即user.getUname()的值。  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" data-id="cjawk6e7g000501zn8q5gkh0v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Web/">Java Web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/21/航天航空与臭虫/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          航天航空与臭虫
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">centos+mysql+tomcat环境下Web项目配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS" sid="JavaWeb会话与状态管理--Session机制学习" style="padding: 0px 30px 0px 46px;"></div>
+<script>
+  (function(){
+    var appid = 'cyt29gnpS',
+    conf = 'ab6fb0a4df25f655315dc29bcd3837b3';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+  </section>
+  </section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="/" class="logo">Coder Am I</a>
+      &copy; 2017 Channel<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.scrollLoading.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

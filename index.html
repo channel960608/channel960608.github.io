@@ -184,7 +184,7 @@
         
         <div id="toc" class="toc-article">
           <strong class="toc-title">文章目录</strong>
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一致性hash算法"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;" class="headerlink" title="&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;"></a>&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一致性hash算法-1"><span class="toc-number">1.0.1.</span> <span class="toc-text"><a href="#&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;-1" class="headerlink" title="&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;"></a>&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#原理"><span class="toc-number">1.0.1.0.1.</span> <span class="toc-text"><a href="#&#x539F;&#x7406;" class="headerlink" title="&#x539F;&#x7406;"></a>&#x539F;&#x7406;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#环形Hash空间"><span class="toc-number">1.0.1.0.1.1.</span> <span class="toc-text"><a href="#&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;" class="headerlink" title="&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;"></a>&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将数据通过一定的hash算法处理后映射到换上"><span class="toc-number">1.0.1.0.1.2.</span> <span class="toc-text"><a href="#&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;" class="headerlink" title="&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;"></a>&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将机器通过hash算法映射到环上"><span class="toc-number">1.0.1.0.1.3.</span> <span class="toc-text"><a href="#&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;" class="headerlink" title="&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;"></a>&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一致性hash算法"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;" class="headerlink" title="&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;"></a>&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一致性hash算法-1"><span class="toc-number">1.0.1.</span> <span class="toc-text"><a href="#&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;-1" class="headerlink" title="&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;"></a>&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#原理"><span class="toc-number">1.0.1.0.1.</span> <span class="toc-text"><a href="#&#x539F;&#x7406;" class="headerlink" title="&#x539F;&#x7406;"></a>&#x539F;&#x7406;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#环形Hash空间"><span class="toc-number">1.0.1.0.1.1.</span> <span class="toc-text"><a href="#&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;" class="headerlink" title="&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;"></a>&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将数据通过一定的hash算法处理后映射到换上"><span class="toc-number">1.0.1.0.1.2.</span> <span class="toc-text"><a href="#&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;" class="headerlink" title="&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;"></a>&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将机器通过hash算法映射到环上"><span class="toc-number">1.0.1.0.1.3.</span> <span class="toc-text"><a href="#&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;" class="headerlink" title="&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;"></a>&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#数据库结点的删除和添加"><span class="toc-number">1.0.1.0.2.</span> <span class="toc-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x7ED3;&#x70B9;&#x7684;&#x5220;&#x9664;&#x548C;&#x6DFB;&#x52A0;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x7ED3;&#x70B9;&#x7684;&#x5220;&#x9664;&#x548C;&#x6DFB;&#x52A0;"></a>&#x6570;&#x636E;&#x5E93;&#x7ED3;&#x70B9;&#x7684;&#x5220;&#x9664;&#x548C;&#x6DFB;&#x52A0;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#平衡性–虚拟结点"><span class="toc-number">1.0.1.0.3.</span> <span class="toc-text"><a href="#&#x5E73;&#x8861;&#x6027;&#x2013;&#x865A;&#x62DF;&#x7ED3;&#x70B9;" class="headerlink" title="&#x5E73;&#x8861;&#x6027;&#x2013;&#x865A;&#x62DF;&#x7ED3;&#x70B9;"></a>&#x5E73;&#x8861;&#x6027;&#x2013;&#x865A;&#x62DF;&#x7ED3;&#x70B9;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#原文"><span class="toc-number">1.0.1.0.3.1.</span> <span class="toc-text"><a href="#&#x539F;&#x6587;" class="headerlink" title="&#x539F;&#x6587;"></a>&#x539F;&#x6587;</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
         </div>
         
 
@@ -196,16 +196,29 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hash(object1) = key1;  </span><br><span class="line">Hash(object2) = key2;  </span><br><span class="line">Hash(object3) = key3;  </span><br><span class="line">Hash(object4) = key4;</span><br></pre></td></tr></table></figure>
 <p><img src="http://oqvbarc9z.bkt.clouddn.com/20160322100651969.png" alt="">  </p>
 </li>
-<li><h6 id="将机器通过hash算法映射到环上"><a href="#将机器通过hash算法映射到环上" class="headerlink" title="将机器通过hash算法映射到环上"></a>将机器通过hash算法映射到环上</h6>采用一致性hash算法后，若分布式集群中有新的数据结点加入，将使用对象存储一样的算法将结点也映射到环中，将结点的ip或者它唯一的别名作为输入计算hash值，并按照顺时针方向，将所有数据对象存储到离自己最近的结点中。<br>例如，假设有NODE1，NODE2，NODE3三个数据结点，通过hash算法，得到对应的key值，映射到环中。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">  Hash(NODE1) = KEY1;   </span><br><span class="line">  Hash(NODE2) = KEY2;  </span><br><span class="line">  Hash(NODE3) = KEY3;    </span><br><span class="line">  ```   </span><br><span class="line">  ![](http://oqvbarc9z.bkt.clouddn.com/20160322101232331.png)  </span><br><span class="line">  上述例子中，4个数据对象以及3个数据结点计算hash值之后分布在环中，而数据对象将存储在顺时针方向离自己最近的数据结点之中。object1存储在NODE1，object3存储在NODE2，object2，object4存储在NODE3中。  </span><br><span class="line">  这样，在查询数据时，会根据数据对象的hash值找到最近的数据库结点，查找指定数据。  </span><br><span class="line"></span><br><span class="line">##### 数据库结点的删除和添加  </span><br><span class="line">一般的hash求余算法，在数据库结点添加或删除之后会造成大量的对象存储位置失效，而一致性hash算法则解决了这个问题。  </span><br><span class="line">- 数据库结点删除  </span><br><span class="line">  以上面的三个结点为例，如果NODE2出现故障被删除，那么NODE2结点上存储的数据，应当按照原有存储规则，迁移至NODE2结点外，顺时针方向最近的结点，即为NODE3。这样，只有NODE3一个数据结点获取了迁移的数据，即删除数据节点只会影响到顺时针方向的下一个结点。  </span><br><span class="line">  ![](http://oqvbarc9z.bkt.clouddn.com/20160322101236809.png)  </span><br><span class="line">- 数据库结点添加  </span><br><span class="line">  向集群中添加一个数据库结点NODE4，通过上面的方法计算hash值KEY4，映射到环上，按照之前的存储规则，将顺时针下一个数据库结点，满足条件的数据对象迁移到NODE4中  </span><br><span class="line">  ![](http://oqvbarc9z.bkt.clouddn.com/20160322101240747.png)  </span><br><span class="line">  通过数据库结点的删除添加原理的描述，我们可以大致了解到，使用一致性hash算法，在进行数据库扩容以及缩减时，只需要对顺时针的下一个数据节点进行数据迁移，这样的算法对于分布式集群来说是非常合适的，再出现故障以及需要扩容时避免的大量数据迁移，减小服务器的压力。  </span><br><span class="line"></span><br><span class="line">##### 平衡性--虚拟结点  </span><br><span class="line">从上面的图解我们可以看到，一致性hash算法满足了单调性和负载均衡地特性以及一般hash算法的分散性。下面讲一下一致性hash算法如何保证平衡性。  </span><br><span class="line">hash算法是不保证平衡的，上面只部署了NODE1和NODE3的情况，object1存储到了NODE1中，而object2、object3、object4都存储到了NODE3中，这样就造成了非常不平衡的状态。在一致性哈希算法中，为了尽可能的满足平衡性，其引入了虚拟节点。  </span><br><span class="line">虚拟结点（virtual）。一个实际数据库结点可以对应多个虚拟结点，这个对应虚拟结点的个数也成为复制个数，虚拟结点在环空间中也是以hash值排列。  </span><br><span class="line">以上面只部署了NODE1和NODE3的情况（NODE2被删除的图）为例，之前的对象在机器上的分布很不均衡，现在我们以2个副本（复制个数）为例，这样整个hash环中就存在了4个虚拟节点，最后对象映射的关系图如下：  </span><br><span class="line">![](http://oqvbarc9z.bkt.clouddn.com/20160322101245263.png)  </span><br><span class="line">根据上图可知对象的映射关系：object1-&gt;NODE1-1，object2-&gt;NODE1-2，object3-&gt;NODE3-2，object4-&gt;NODE3-1。通过虚拟节点的引入，对象的分布就比较均衡了。那么在实际操作中，正真的对象查询是如何工作的呢？对象从hash到虚拟节点到实际节点的转换如下图：  </span><br><span class="line">![](http://oqvbarc9z.bkt.clouddn.com/20160322101249206.png)  </span><br><span class="line">虚拟结点的哈希值计算，可以将对应结点的ip地址加上数字后缀作为输入值，计算相应的hash值。例如，NODE1的ip为192.168.0.1，那么它的hash值为Hash(&quot;192.168.0.1&quot;),当引入两个虚拟结点NODE1-1和NODE1-2之后，它的虚拟结点哈希值为</span><br></pre></td></tr></table></figure>
+<li><h6 id="将机器通过hash算法映射到环上"><a href="#将机器通过hash算法映射到环上" class="headerlink" title="将机器通过hash算法映射到环上"></a>将机器通过hash算法映射到环上</h6><p>采用一致性hash算法后，若分布式集群中有新的数据结点加入，将使用对象存储一样的算法将结点也映射到环中，将结点的ip或者它唯一的别名作为输入计算hash值，并按照顺时针方向，将所有数据对象存储到离自己最近的结点中。<br>例如，假设有NODE1，NODE2，NODE3三个数据结点，通过hash算法，得到对应的key值，映射到环中。  </p>
+<pre><code class="java">Hash(NODE1) = KEY1;   
+Hash(NODE2) = KEY2;  
+Hash(NODE3) = KEY3;
+</code></pre>
+<p><img src="http://oqvbarc9z.bkt.clouddn.com/20160322101232331.png" alt=""><br>上述例子中，4个数据对象以及3个数据结点计算hash值之后分布在环中，而数据对象将存储在顺时针方向离自己最近的数据结点之中。object1存储在NODE1，object3存储在NODE2，object2，object4存储在NODE3中。<br>这样，在查询数据时，会根据数据对象的hash值找到最近的数据库结点，查找指定数据。  </p>
 </li>
 </ul>
-<p>Hash(“192.168.0.1#1”);<br>Hash(“192.168.0.1#2”);<br>```  </p>
-<p>####### 原文<br><a href="http://blog.csdn.net/cywosp/article/details/23397179/" target="_blank" rel="noopener">《一致性哈希算法》</a></p>
+<h5 id="数据库结点的删除和添加"><a href="#数据库结点的删除和添加" class="headerlink" title="数据库结点的删除和添加"></a>数据库结点的删除和添加</h5><p>一般的hash求余算法，在数据库结点添加或删除之后会造成大量的对象存储位置失效，而一致性hash算法则解决了这个问题。  </p>
+<ul>
+<li>数据库结点删除<br>以上面的三个结点为例，如果NODE2出现故障被删除，那么NODE2结点上存储的数据，应当按照原有存储规则，迁移至NODE2结点外，顺时针方向最近的结点，即为NODE3。这样，只有NODE3一个数据结点获取了迁移的数据，即删除数据节点只会影响到顺时针方向的下一个结点。<br><img src="http://oqvbarc9z.bkt.clouddn.com/20160322101236809.png" alt="">  </li>
+<li>数据库结点添加<br>向集群中添加一个数据库结点NODE4，通过上面的方法计算hash值KEY4，映射到环上，按照之前的存储规则，将顺时针下一个数据库结点，满足条件的数据对象迁移到NODE4中<br><img src="http://oqvbarc9z.bkt.clouddn.com/20160322101240747.png" alt=""><br>通过数据库结点的删除添加原理的描述，我们可以大致了解到，使用一致性hash算法，在进行数据库扩容以及缩减时，只需要对顺时针的下一个数据节点进行数据迁移，这样的算法对于分布式集群来说是非常合适的，再出现故障以及需要扩容时避免的大量数据迁移，减小服务器的压力。  </li>
+</ul>
+<h5 id="平衡性–虚拟结点"><a href="#平衡性–虚拟结点" class="headerlink" title="平衡性–虚拟结点"></a>平衡性–虚拟结点</h5><p>从上面的图解我们可以看到，一致性hash算法满足了单调性和负载均衡地特性以及一般hash算法的分散性。下面讲一下一致性hash算法如何保证平衡性。<br>hash算法是不保证平衡的，上面只部署了NODE1和NODE3的情况，object1存储到了NODE1中，而object2、object3、object4都存储到了NODE3中，这样就造成了非常不平衡的状态。在一致性哈希算法中，为了尽可能的满足平衡性，其引入了虚拟节点。<br>虚拟结点（virtual）。一个实际数据库结点可以对应多个虚拟结点，这个对应虚拟结点的个数也成为复制个数，虚拟结点在环空间中也是以hash值排列。<br>以上面只部署了NODE1和NODE3的情况（NODE2被删除的图）为例，之前的对象在机器上的分布很不均衡，现在我们以2个副本（复制个数）为例，这样整个hash环中就存在了4个虚拟节点，最后对象映射的关系图如下：<br><img src="http://oqvbarc9z.bkt.clouddn.com/20160322101245263.png" alt=""><br>根据上图可知对象的映射关系：object1-&gt;NODE1-1，object2-&gt;NODE1-2，object3-&gt;NODE3-2，object4-&gt;NODE3-1。通过虚拟节点的引入，对象的分布就比较均衡了。那么在实际操作中，正真的对象查询是如何工作的呢？对象从hash到虚拟节点到实际节点的转换如下图：<br><img src="http://oqvbarc9z.bkt.clouddn.com/20160322101249206.png" alt=""><br>虚拟结点的哈希值计算，可以将对应结点的ip地址加上数字后缀作为输入值，计算相应的hash值。例如，NODE1的ip为192.168.0.1，那么它的hash值为Hash(“192.168.0.1”),当引入两个虚拟结点NODE1-1和NODE1-2之后，它的虚拟结点哈希值为  </p>
+<pre><code class="java">Hash(<span class="string">"192.168.0.1#1"</span>);  
+Hash(<span class="string">"192.168.0.1#2"</span>);
+</code></pre>
+<h6 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h6><p><a href="http://blog.csdn.net/cywosp/article/details/23397179/" target="_blank" rel="noopener">《一致性哈希算法》</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2018/03/19/一致性hash算法/" data-id="cjey94b9300063mznjg72r6k3" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2018/03/19/一致性hash算法/" data-id="cjey9ghhi00069czn5tkq4q1g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式数据库/">分布式数据库</a></li></ul>
@@ -257,7 +270,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/07/21/航天航空与臭虫/" data-id="cjey94b9600073mznrrrkwee7" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/07/21/航天航空与臭虫/" data-id="cjey9ghhk00079czn4wzszra6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
@@ -367,7 +380,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" data-id="cjey94b8w00023mzn5qh93mkv" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" data-id="cjey9ghhf00059czn5jqnn8ij" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Web/">Java Web</a></li></ul>
@@ -494,7 +507,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" data-id="cjey94b99000b3mznrvzg7ywp" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" data-id="cjey9ghhp000d9czny9df35or" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a></li></ul>
@@ -759,7 +772,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/" data-id="cjey94b97000a3mznzqnanz6h" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/" data-id="cjey9ghhl000a9cznm4tsqva7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -858,7 +871,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/01/CORBA简介与简单实践/" data-id="cjey94b8o00003mzntyc7u602" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/01/CORBA简介与简单实践/" data-id="cjey9ghh200009cznwynhyre8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CORBA/">CORBA</a></li></ul>
@@ -986,7 +999,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/05/27/Hexo通过本地化设置提高访问字体库效率/" data-id="cjey94b9100053mznzqm6xspq" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/05/27/Hexo通过本地化设置提高访问字体库效率/" data-id="cjey9ghh900029cznraamd2fz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -1238,7 +1251,7 @@ mojombo/github-flavored-markdown#1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/05/26/Mastering-Markdown/" data-id="cjey94b9b000d3mznkdjst472" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/05/26/Mastering-Markdown/" data-id="cjey9ghhn000b9cznga44o10v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>

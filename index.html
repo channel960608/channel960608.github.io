@@ -98,7 +98,7 @@
       <ul>
         
           <li>
-            <a href="/2018/03/19/一致性hash算法/">(no title)</a>
+            <a href="/2018/03/19/一致性hash算法/">一致性hash算法原理简要理解</a>
           </li>
         
           <li>
@@ -126,7 +126,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式数据库/">分布式数据库</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -135,7 +135,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a>
+      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/分布式数据库/" style="font-size: 10px;">分布式数据库</a>
     </div>
   </div>
 
@@ -162,15 +162,30 @@
     <article id="post-一致性hash算法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/19/一致性hash算法/" class="article-date">
-  <time datetime="2018-03-19T08:14:24.765Z" itemprop="datePublished">2018-03-19</time>
+  <time datetime="2018-03-19T13:12:00.000Z" itemprop="datePublished">2018-03-19</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/一致性hash算法/">一致性hash算法原理简要理解</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
+        
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一致性hash算法"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;" class="headerlink" title="&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;"></a>&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一致性hash算法-1"><span class="toc-number">1.0.1.</span> <span class="toc-text"><a href="#&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;-1" class="headerlink" title="&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;"></a>&#x4E00;&#x81F4;&#x6027;hash&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#原理"><span class="toc-number">1.0.1.0.1.</span> <span class="toc-text"><a href="#&#x539F;&#x7406;" class="headerlink" title="&#x539F;&#x7406;"></a>&#x539F;&#x7406;</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#环形Hash空间"><span class="toc-number">1.0.1.0.1.1.</span> <span class="toc-text"><a href="#&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;" class="headerlink" title="&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;"></a>&#x73AF;&#x5F62;Hash&#x7A7A;&#x95F4;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将数据通过一定的hash算法处理后映射到换上"><span class="toc-number">1.0.1.0.1.2.</span> <span class="toc-text"><a href="#&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;" class="headerlink" title="&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;"></a>&#x5C06;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x4E00;&#x5B9A;&#x7684;hash&#x7B97;&#x6CD5;&#x5904;&#x7406;&#x540E;&#x6620;&#x5C04;&#x5230;&#x6362;&#x4E0A;</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#将机器通过hash算法映射到环上"><span class="toc-number">1.0.1.0.1.3.</span> <span class="toc-text"><a href="#&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;" class="headerlink" title="&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;"></a>&#x5C06;&#x673A;&#x5668;&#x901A;&#x8FC7;hash&#x7B97;&#x6CD5;&#x6620;&#x5C04;&#x5230;&#x73AF;&#x4E0A;</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+        </div>
         
 
         <h1 id="一致性hash算法"><a href="#一致性hash算法" class="headerlink" title="一致性hash算法"></a>一致性hash算法</h1><p>一致性哈希算法能够有效地解决分布式数据的扩容问题。<br>一般的hash算法，将数据映射到具体的节点上，例如取模分片，固定分片hash算法等。但当一个节点出现故障退出集群，或者当需要添加新的数据节点进行扩容时，势必会导致原有数据映射的失效。<br>一致性hash算法解决了普通余数Hash算法伸缩性差的问题，可以保证上线、下线服务器的情况下尽量有多的请求命中原来路由到的服务器。</p>
@@ -190,9 +205,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2018/03/19/一致性hash算法/" data-id="cjey8yael000bz3znnwa1r324" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2018/03/19/一致性hash算法/" data-id="cjey94b9300063mznjg72r6k3" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式数据库/">分布式数据库</a></li></ul>
+
     </footer>
   </div>
   
@@ -240,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/07/21/航天航空与臭虫/" data-id="cjey8yaem000dz3zn7j4fdtjr" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/07/21/航天航空与臭虫/" data-id="cjey94b9600073mznrrrkwee7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
@@ -350,7 +367,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" data-id="cjey8yae80003z3znxhqix8xk" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" data-id="cjey94b8w00023mzn5qh93mkv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Web/">Java Web</a></li></ul>
@@ -477,7 +494,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" data-id="cjey8yaef0005z3znuwsvbs91" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" data-id="cjey94b99000b3mznrvzg7ywp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a></li></ul>
@@ -742,7 +759,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/" data-id="cjey8yaeh0006z3znj2czmah0" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/" data-id="cjey94b97000a3mznzqnanz6h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -841,7 +858,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/01/CORBA简介与简单实践/" data-id="cjey8yaej0007z3znq4naqamp" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/01/CORBA简介与简单实践/" data-id="cjey94b8o00003mzntyc7u602" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CORBA/">CORBA</a></li></ul>
@@ -969,7 +986,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/05/27/Hexo通过本地化设置提高访问字体库效率/" data-id="cjey8yae10001z3zn4p2pt8zs" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/05/27/Hexo通过本地化设置提高访问字体库效率/" data-id="cjey94b9100053mznzqm6xspq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -1221,7 +1238,7 @@ mojombo/github-flavored-markdown#1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/05/26/Mastering-Markdown/" data-id="cjey8yaek000az3znkinr0v7m" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/05/26/Mastering-Markdown/" data-id="cjey94b9b000d3mznkdjst472" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>

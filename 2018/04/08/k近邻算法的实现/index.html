@@ -7,17 +7,17 @@
   
   <title>Coder Am I</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。 k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;$T = \{(x_1,y_1),(x_2,y_2),\ldots,(x">
+  <meta name="description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。&amp;emsp;&amp;emsp;hexo博客中latex数学公式渲染的问题，参考这篇博客   k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Coder Am I">
 <meta property="og:url" content="http://channel960608.github.io/2018/04/08/k近邻算法的实现/index.html">
 <meta property="og:site_name" content="Coder Am I">
-<meta property="og:description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。 k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;$T = \{(x_1,y_1),(x_2,y_2),\ldots,(x">
+<meta property="og:description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。&amp;emsp;&amp;emsp;hexo博客中latex数学公式渲染的问题，参考这篇博客   k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-08T09:22:48.362Z">
+<meta property="og:updated_time" content="2018-04-08T10:46:27.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Coder Am I">
-<meta name="twitter:description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。 k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;$T = \{(x_1,y_1),(x_2,y_2),\ldots,(x">
+<meta name="twitter:description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。&amp;emsp;&amp;emsp;hexo博客中latex数学公式渲染的问题，参考这篇博客   k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;">
   
   
     <link rel="icon" href="/favicon.png">
@@ -172,7 +172,7 @@
       
         
 
-        <h1 id="k近邻算法中kd树的实现"><a href="#k近邻算法中kd树的实现" class="headerlink" title="k近邻算法中kd树的实现"></a>k近邻算法中kd树的实现</h1><p>&emsp;&emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。</p>
+        <h1 id="k近邻算法中kd树的实现"><a href="#k近邻算法中kd树的实现" class="headerlink" title="k近邻算法中kd树的实现"></a>k近邻算法中kd树的实现</h1><p>&emsp;&emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。<br>&emsp;&emsp;hexo博客中latex数学公式渲染的问题，参考这篇<a href="https://blog.csdn.net/u014630987/article/details/78670258" target="_blank" rel="noopener">博客</a>  </p>
 <h3 id="k近邻算法简述"><a href="#k近邻算法简述" class="headerlink" title="k近邻算法简述"></a>k近邻算法简述</h3><p>输入： 训练数据集<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$T = \{(x_1,y_1),(x_2,y_2),\ldots,(x_N,y_N)\}$<br>&emsp;&emsp;其中，$x_i \in \cal X \subseteq R^n$ 为实例的特征向量，$y_i \in \cal Y = \{ c_1, c_2, \ldots, c_\rm K \}$ 为实例的类别， $i = 1, 2, \ldots, N$: 实例特征向量 $x$;<br>输出： 实例$x$所属的类$y$.</p>
 <ol>
 <li>在给定的距离度量，在训练集T中找到与 $x$ 最邻近的 $k$ 个点，涵盖这 $k$ 个点的 $x$ 的邻域记作$N_k(x)$;  </li>
@@ -329,7 +329,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2018/04/08/k近邻算法的实现/" data-id="cjfqmvfbp000axyznlfu1ixcb" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2018/04/08/k近邻算法的实现/" data-id="cjfqonu1500063dznyr3j5nv0" class="article-share-link">Share</a>
       
       
     </footer>

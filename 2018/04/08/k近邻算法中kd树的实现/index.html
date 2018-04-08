@@ -5,18 +5,19 @@
   <meta name="baidu-site-verification" content="zhTMODK6kb" />
   <meta http-equiv="content-language" content="zh-cn">
   
-  <title>Coder Am I</title>
+  <title>k近邻算法中kd树的实现 | Coder Am I</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。&amp;emsp;&amp;emsp;hexo博客中latex数学公式渲染的问题，参考这篇博客   k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;">
+<meta name="keywords" content="Machine Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Coder Am I">
-<meta property="og:url" content="http://channel960608.github.io/2018/04/08/k近邻算法的实现/index.html">
+<meta property="og:title" content="k近邻算法中kd树的实现">
+<meta property="og:url" content="http://channel960608.github.io/2018/04/08/k近邻算法中kd树的实现/index.html">
 <meta property="og:site_name" content="Coder Am I">
 <meta property="og:description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。&amp;emsp;&amp;emsp;hexo博客中latex数学公式渲染的问题，参考这篇博客   k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-08T10:46:27.776Z">
+<meta property="og:updated_time" content="2018-04-08T10:48:53.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Coder Am I">
+<meta name="twitter:title" content="k近邻算法中kd树的实现">
 <meta name="twitter:description" content="k近邻算法中kd树的实现&amp;emsp;&amp;emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。&amp;emsp;&amp;emsp;hexo博客中latex数学公式渲染的问题，参考这篇博客   k近邻算法简述输入： 训练数据集&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;">
   
   
@@ -99,7 +100,7 @@
       <ul>
         
           <li>
-            <a href="/2018/04/08/k近邻算法的实现/">(no title)</a>
+            <a href="/2018/04/08/k近邻算法中kd树的实现/">k近邻算法中kd树的实现</a>
           </li>
         
           <li>
@@ -127,7 +128,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式数据库/">分布式数据库</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式数据库/">分布式数据库</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -136,7 +137,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/分布式数据库/" style="font-size: 10px;">分布式数据库</a>
+      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/分布式数据库/" style="font-size: 10px;">分布式数据库</a>
     </div>
   </div>
 
@@ -158,18 +159,33 @@
   
 </aside>
         
-        <section id="main"><article id="post-k近邻算法的实现" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-k近邻算法中kd树的实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/08/k近邻算法的实现/" class="article-date">
-  <time datetime="2018-04-08T07:56:07.951Z" itemprop="datePublished">2018-04-08</time>
+    <a href="/2018/04/08/k近邻算法中kd树的实现/" class="article-date">
+  <time datetime="2018-04-08T10:48:00.000Z" itemprop="datePublished">2018-04-08</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      k近邻算法中kd树的实现
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
+        
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#k近邻算法中kd树的实现"><span class="toc-number">1.</span> <span class="toc-text"><a href="#k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x4E2D;kd&#x6811;&#x7684;&#x5B9E;&#x73B0;" class="headerlink" title="k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x4E2D;kd&#x6811;&#x7684;&#x5B9E;&#x73B0;"></a>k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x4E2D;kd&#x6811;&#x7684;&#x5B9E;&#x73B0;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#k近邻算法简述"><span class="toc-number">1.0.1.</span> <span class="toc-text"><a href="#k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x7B80;&#x8FF0;" class="headerlink" title="k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x7B80;&#x8FF0;"></a>k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x7B80;&#x8FF0;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据结构—kd树"><span class="toc-number">1.0.2.</span> <span class="toc-text"><a href="#&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;kd&#x6811;" class="headerlink" title="&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;kd&#x6811;"></a>&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;kd&#x6811;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索kd树算法"><span class="toc-number">1.0.3.</span> <span class="toc-text"><a href="#&#x641C;&#x7D22;kd&#x6811;&#x7B97;&#x6CD5;" class="headerlink" title="&#x641C;&#x7D22;kd&#x6811;&#x7B97;&#x6CD5;"></a>&#x641C;&#x7D22;kd&#x6811;&#x7B97;&#x6CD5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">1.0.4.</span> <span class="toc-text"><a href="#&#x4EE3;&#x7801;&#x5B9E;&#x73B0;" class="headerlink" title="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"></a>&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</span></a></li></ol></li></ol></li></ol>
+        </div>
         
 
         <h1 id="k近邻算法中kd树的实现"><a href="#k近邻算法中kd树的实现" class="headerlink" title="k近邻算法中kd树的实现"></a>k近邻算法中kd树的实现</h1><p>&emsp;&emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。<br>&emsp;&emsp;hexo博客中latex数学公式渲染的问题，参考这篇<a href="https://blog.csdn.net/u014630987/article/details/78670258" target="_blank" rel="noopener">博客</a>  </p>
@@ -329,9 +345,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2018/04/08/k近邻算法的实现/" data-id="cjfqonu1500063dznyr3j5nv0" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2018/04/08/k近邻算法中kd树的实现/" data-id="cjfqoqvf8000b51zn3tfau1no" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+
     </footer>
   </div>
   
@@ -352,7 +370,7 @@
 
   <section id="comments">
 <!--高速版，加载速度快，使用前需测试页面的兼容性-->
-<div id="SOHUCS" sid="" style="padding: 0px 30px 0px 46px;"></div>
+<div id="SOHUCS" sid="k近邻算法中kd树的实现" style="padding: 0px 30px 0px 46px;"></div>
 <script>
   (function(){
     var appid = 'cyt29gnpS',

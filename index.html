@@ -98,7 +98,7 @@
       <ul>
         
           <li>
-            <a href="/2018/04/08/k近邻算法的实现/">(no title)</a>
+            <a href="/2018/04/08/k近邻算法中kd树的实现/">k近邻算法中kd树的实现</a>
           </li>
         
           <li>
@@ -126,7 +126,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式数据库/">分布式数据库</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CORBA/">CORBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java-Web/">Java Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式数据库/">分布式数据库</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -135,7 +135,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/分布式数据库/" style="font-size: 10px;">分布式数据库</a>
+      <a href="/tags/CORBA/" style="font-size: 10px;">CORBA</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java-Web/" style="font-size: 10px;">Java Web</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Tomcat-Linux/" style="font-size: 10px;">Tomcat && Linux</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/分布式数据库/" style="font-size: 10px;">分布式数据库</a>
     </div>
   </div>
 
@@ -159,18 +159,33 @@
         
         <section id="main">
   
-    <article id="post-k近邻算法的实现" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-k近邻算法中kd树的实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/04/08/k近邻算法的实现/" class="article-date">
-  <time datetime="2018-04-08T07:56:07.951Z" itemprop="datePublished">2018-04-08</time>
+    <a href="/2018/04/08/k近邻算法中kd树的实现/" class="article-date">
+  <time datetime="2018-04-08T10:48:00.000Z" itemprop="datePublished">2018-04-08</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/04/08/k近邻算法中kd树的实现/">k近邻算法中kd树的实现</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
+        
+        <div id="toc" class="toc-article">
+          <strong class="toc-title">文章目录</strong>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#k近邻算法中kd树的实现"><span class="toc-number">1.</span> <span class="toc-text"><a href="#k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x4E2D;kd&#x6811;&#x7684;&#x5B9E;&#x73B0;" class="headerlink" title="k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x4E2D;kd&#x6811;&#x7684;&#x5B9E;&#x73B0;"></a>k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x4E2D;kd&#x6811;&#x7684;&#x5B9E;&#x73B0;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#k近邻算法简述"><span class="toc-number">1.0.1.</span> <span class="toc-text"><a href="#k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x7B80;&#x8FF0;" class="headerlink" title="k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x7B80;&#x8FF0;"></a>k&#x8FD1;&#x90BB;&#x7B97;&#x6CD5;&#x7B80;&#x8FF0;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据结构—kd树"><span class="toc-number">1.0.2.</span> <span class="toc-text"><a href="#&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;kd&#x6811;" class="headerlink" title="&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;kd&#x6811;"></a>&#x6570;&#x636E;&#x7ED3;&#x6784;&#x2014;kd&#x6811;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索kd树算法"><span class="toc-number">1.0.3.</span> <span class="toc-text"><a href="#&#x641C;&#x7D22;kd&#x6811;&#x7B97;&#x6CD5;" class="headerlink" title="&#x641C;&#x7D22;kd&#x6811;&#x7B97;&#x6CD5;"></a>&#x641C;&#x7D22;kd&#x6811;&#x7B97;&#x6CD5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">1.0.4.</span> <span class="toc-text"><a href="#&#x4EE3;&#x7801;&#x5B9E;&#x73B0;" class="headerlink" title="&#x4EE3;&#x7801;&#x5B9E;&#x73B0;"></a>&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</span></a></li></ol></li></ol></li></ol>
+        </div>
         
 
         <h1 id="k近邻算法中kd树的实现"><a href="#k近邻算法中kd树的实现" class="headerlink" title="k近邻算法中kd树的实现"></a>k近邻算法中kd树的实现</h1><p>&emsp;&emsp;k近邻算法(k-nearest neighbor, k-NN)是比较基本的分类与回归算法。本文是参照《统计学习方法》一书对分类问题中k近邻算法的实现。<br>&emsp;&emsp;hexo博客中latex数学公式渲染的问题，参考这篇<a href="https://blog.csdn.net/u014630987/article/details/78670258" target="_blank" rel="noopener">博客</a>  </p>
@@ -330,9 +345,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2018/04/08/k近邻算法的实现/" data-id="cjfqonu1500063dznyr3j5nv0" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2018/04/08/k近邻算法中kd树的实现/" data-id="cjfqoqvf8000b51zn3tfau1no" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li></ul>
+
     </footer>
   </div>
   
@@ -399,7 +416,7 @@ Hash(&quot;192.168.0.1#2&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2018/03/19/一致性hash算法/" data-id="cjfqonu1d000f3dzngs7gd01b" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2018/03/19/一致性hash算法/" data-id="cjfqoqvf9000d51znm6p7mrox" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式数据库/">分布式数据库</a></li></ul>
@@ -451,7 +468,7 @@ Hash(&quot;192.168.0.1#2&quot;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/07/21/航天航空与臭虫/" data-id="cjfqonu1c000d3dzn9xuro4ra" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/07/21/航天航空与臭虫/" data-id="cjfqoqvfa000f51znbhykmui3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
@@ -561,7 +578,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" data-id="cjfqonu1300053dznp7yz7i0u" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/18/JavaWeb会话与状态管理-Session机制学习/" data-id="cjfqoqvf1000551znja16klf0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-Web/">Java Web</a></li></ul>
@@ -688,7 +705,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" data-id="cjfqonu1a000b3dznhv1d2x8d" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/12/centos-mysql-tomcat环境下Web项目配置/" data-id="cjfqoqvf5000751znslby4rxl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat-Linux/">Tomcat && Linux</a></li></ul>
@@ -953,7 +970,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/" data-id="cjfqonu1700073dzngh94gusc" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/03/Java开发手册阅读整理/" data-id="cjfqoqvf3000651znp3ldndzs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -1052,7 +1069,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/06/01/CORBA简介与简单实践/" data-id="cjfqonu0w00023dznwjap265r" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/06/01/CORBA简介与简单实践/" data-id="cjfqoqven000051zn2srykpw7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CORBA/">CORBA</a></li></ul>
@@ -1180,7 +1197,7 @@ public String login(User user,ModelMap map) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/05/27/Hexo通过本地化设置提高访问字体库效率/" data-id="cjfqonu0o00003dzn3hmlvrws" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/05/27/Hexo通过本地化设置提高访问字体库效率/" data-id="cjfqoqveu000251zn9n7ghf7d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
@@ -1434,7 +1451,7 @@ mojombo/github-flavored-markdown#1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://channel960608.github.io/2017/05/26/Mastering-Markdown/" data-id="cjfqonu19000a3dznl7bei7sq" class="article-share-link">Share</a>
+      <a data-url="http://channel960608.github.io/2017/05/26/Mastering-Markdown/" data-id="cjfqoqvf6000a51znssg0i777" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Markdown/">Markdown</a></li></ul>
